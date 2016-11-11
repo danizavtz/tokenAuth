@@ -1,0 +1,39 @@
+{
+  "name": "nodelogin",
+  "version": "1.0.0",
+  "description": "A microservice for token based security authentication using express and jwt.io",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "test": "mocha --reporter nyan test/",
+    "lint": "jshint server/**/*.js test/*.js *.js",
+    "coverage": "istanbul cover _mocha -- --reporter progress ./test/",
+    "validate": "npm ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danizavtz/tokenAuth.git"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "jwt.io"
+  ],
+  "author": "danizavtz",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/danizavtz/tokenAuth/issues"
+  },
+  "homepage": "https://github.com/danizavtz/tokenAuth#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.1.9",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.11.0",
+    "pg": "^6.1.0",
+    "scrypt": "^6.0.3"
+  }
+}
