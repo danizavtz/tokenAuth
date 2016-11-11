@@ -10,21 +10,18 @@
         delete req.body.password;
         delete req.body.kdfResult;
         var tk = {};
-        tk.token = jwt.sign(req.employee, "meutokensecreto", { expiresIn: 1800 });//expires in 1800 seconds
+        tk.token = 'Bearer '+jwt.sign(req.employee, "meutokensecreto", { expiresIn: 1800 });//expires in 1800 seconds
         res.status(200).json(tk);
         res.end();
     };
 
     exports.validateLogin = function(req, res, next) {
+        req.validationErrors = [];
+        if(req.body.login === undefined) req.validationErrors.push('login é obrigatório no body da requisição');
+        if(req.body.password === undefined) req.validationErrors.push('password é obrigatório no body da requisição');
 
-        var errors = req.validationErrors();
-        if (errors) {
-            var response = { errors: [] };
-
-            errors.forEach(function(err) {
-                response.errors.push(err.msg);
-            });
-            return res.status(400).json(response);
+        if (req.validationErrors.length > 0) {
+            return res.status(400).json(req.validationErrors);
         }
         //decodificar MD5, SHA1 ou BASE64
         req.body.kdfResult = scrypt.kdfSync(req.body.password.toString(), scryptParam);
