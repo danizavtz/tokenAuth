@@ -7,3 +7,8 @@ Instruções para utilização:<br>
 5. Executar o npm i <br>
 6. Para iniciar a aplicação node: npm start <br>
 7. Deve ser exibida uma mensagem: Microsservice login listening at http://localhost:3002 no console.<br>
+<br>
+<br>
+Executar os testes:<br>
+1. npm t (rodar testes de unidade)<br>
+2. npm run coverage (Cobertura dos testes de unidade)<br>
