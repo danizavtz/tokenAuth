@@ -53,6 +53,15 @@ describe('#Login', function() {
                     done();
                 });
         });
+        it('Check home page', function(done){
+            api.get('/')
+            .set('Accept', 'application/json; charset=utf-8')
+                .expect(200)
+                .end(function(err, res) {
+                    expect(res.status).to.equal(200);
+                    done();
+                });
+        });
     });
     describe('POST', function() {
         it('Check if post without incorrect json return 400 error', function(done) {
