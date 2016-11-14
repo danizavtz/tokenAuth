@@ -133,7 +133,6 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(200)
                 .end(function(err, res) {
-                    console.log(res.body);
                     expect(res.body).to.have.property('token');
                     expect(res.body.token).to.not.equal(null);
                     done();
