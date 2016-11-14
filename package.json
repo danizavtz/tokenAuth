@@ -36,5 +36,13 @@
     "pg": "^6.1.0",
     "scrypt": "^6.0.3",
     "validator": "^6.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.4",
+    "knex": "^0.12.6",
+    "mocha": "^3.1.2",
+    "supertest": "^2.0.1"
   }
 }
