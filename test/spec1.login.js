@@ -1,38 +1,27 @@
 process.env.NODE_ENV = 'test';
-var expect = require('chai').expect,
+var fs = require('fs'),
+    expect = require('chai').expect,
     supertest = require('supertest'),
     app = require('../app'),
-    knex = require('../db/knex'),
     pg = require('../lib/postgres'),
-    DATABASE_URL = 'postgres://postgres:admin@localhost/test',
-    server, api;
+    server = app.listen(),
+    api = supertest(server),
+    sql = fs.readFileSync(__dirname + '/../sql/insert.sql').toString();
 
 describe('#Login', function() {
     before(function(done) {
-        knex.migrate.rollback()
-            .then(function() {
-                knex.migrate.latest()
-                    .then(function() {
-                        return knex.seed.run()
-                            .then(function() {
-                                pg.initialize(DATABASE_URL, function() {});
-                                app.set('port', app.config.PORT);
-
-                                server = app.listen(app.get('port'), function() {
-                                    var host = 'localhost';
-                                    var port = server.address().port;
-                                });
-                                api = supertest(server);
-                                done();
-                            });
-                    });
+        pg.initialize(app.config.DATABASEURL, function(err) {
+            if (err) {
+                throw err;
+            }
+            pg.client.query(sql, function(err, result) {
+                if (err) {
+                    throw err;
+                }
+                done();
             });
+        });
     });
-    after(function(done) {
-        //desliga o servidor
-        server.close();
-        done();
-    })
 
     describe('GET', function() {
         it('Check get route does not exist', function(done) {
@@ -53,9 +42,9 @@ describe('#Login', function() {
                     done();
                 });
         });
-        it('Check home page', function(done){
+        it('Check home page', function(done) {
             api.get('/')
-            .set('Accept', 'application/json; charset=utf-8')
+                .set('Accept', 'application/json; charset=utf-8')
                 .expect(200)
                 .end(function(err, res) {
                     expect(res.status).to.equal(200);
@@ -101,7 +90,7 @@ describe('#Login', function() {
         it('Check not found user', function(done) {
             api.post('/login/')
                 .send({
-                    "login" : "teste",
+                    "login": "teste",
                     "password": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
@@ -111,10 +100,10 @@ describe('#Login', function() {
                     done();
                 });
         });
-        it('Check wrong password error', function(done){
+        it('Check wrong password error', function(done) {
             api.post('/login/')
                 .send({
-                    "login" : "admin",
+                    "login": "admin",
                     "password": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
@@ -124,15 +113,17 @@ describe('#Login', function() {
                     done();
                 });
         });
-        it('Check login with success', function(done){
+        it('Check login with success', function(done) {
             api.post('/login/')
                 .send({
-                    "login" : "admin",
+                    "login": "admin",
                     "password": "123456abc"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(200)
                 .end(function(err, res) {
+                    console.log(err);
+                    console.log(res.body);
                     expect(res.body).to.have.property('token');
                     expect(res.body.token).to.not.equal(null);
                     done();

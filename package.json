@@ -4,6 +4,8 @@
   "description": "A microservice for token based security authentication using express and jwt.io",
   "main": "app.js",
   "scripts": {
+    "createdb": "psql -U postgres -d login -a -f ./sql/create.sql",
+    "dropdb": "psql -U postgres -d login -a -f ./sql/drop.sql",
     "start": "nodemon ./bin/www",
     "test": "mocha --reporter nyan test/",
     "coverage": "istanbul cover _mocha -- --reporter progress ./test/"

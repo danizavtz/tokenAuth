@@ -1,0 +1,4 @@
+--removing colateral effects for test running
+DELETE FROM employee;
+ALTER SEQUENCE employee_employee_id_seq RESTART WITH 1;
+INSERT INTO employee(employee_id,login, password) VALUES (10,'admin', '\x736372797074000f0000000800000001bb7908e57a632ba08244a5b2e0e082e53944383993b90b7e6271e0151bab04403eb1e51cd67e04e4740d4fdaeeb3113ec1bc37af8c37b045f8fc1c8169a8cab5ce8aac53acca0704ba2881535133fa15');
