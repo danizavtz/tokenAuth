@@ -1,14 +1,22 @@
+[![Express Logo](https://i.cloudup.com/zfY6lL7eFa-3000x3000.png)](http://expressjs.com/)
 # tokenAuth
-Instruções para utilização:<br>
-1. Clone o projeto do git<br>
-2. Criar um banco de dados "login", pois é esse banco que é criado quando é iniciada a aplicação node, voce pode modificar o nome do banco <br>dentro do arquivo config e trocar o nome do banco pelo mais coerente. <br>
-3. Executar os scripts de criação (create.sql) <br>
-4. Fazer o primeiro insert (insert.sql) <br>
-5. Executar o npm i <br>
-6. Para iniciar a aplicação node: npm start <br>
-7. Deve ser exibida uma mensagem: Microsservice login listening at http://localhost:3002 no console.<br>
-<br>
-<br>
-Executar os testes:<br>
-1. npm t (rodar testes de unidade)<br>
-2. npm run coverage (Cobertura dos testes de unidade)<br>
+Steps for running:<br>
+1. Clone project from git<br>
+2. create a database "login" in your postgres database instance.
+3. create table
+```
+npm run create
+```
+4. Install dependencies
+```
+npm install
+```
+5. Start the application
+```
+npm start
+```
+6. Should see a msg in console: Microsservice login listening at http://localhost:3002
+
+# Tests
+1. npm t (unit tests)<br>
+2. npm run coverage (coverage)<br>
