@@ -10,7 +10,7 @@
         delete req.body.password;
         delete req.body.kdfResult;
         var tk = {};
-        tk.token = 'Bearer '+jwt.sign(req.employee, "meutokensecreto", { expiresIn: 1800 });//expires in 1800 seconds
+        tk.token = 'Bearer '+jwt.sign(req.employee, 'meutokensecreto', { expiresIn: 1800 });//expires in 1800 seconds
         res.status(200).json(tk);
         res.end();
     };

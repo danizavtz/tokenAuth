@@ -7,6 +7,7 @@
     "createdb": "psql -U postgres -d login -a -f ./sql/create.sql",
     "dropdb": "psql -U postgres -d login -a -f ./sql/drop.sql",
     "start": "nodemon ./bin/www",
+    "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "test": "mocha --reporter nyan test/",
     "coverage": "istanbul cover _mocha -- --reporter progress ./test/"
   },
@@ -39,8 +40,9 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^4.2.0",
     "istanbul": "^0.4.5",
-    "jshint": "^2.9.4",
+    "jshint": "^2.9.5",
     "mocha": "^3.1.2",
     "supertest": "^2.0.1"
   }
