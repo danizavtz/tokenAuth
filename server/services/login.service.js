@@ -16,13 +16,13 @@
     };
 
     exports.validateLogin = function(req, res, next) {
-        req.validationErrors = [];
-        if(req.body.login === undefined) req.validationErrors.push('login é obrigatório no body da requisição');
-        if(req.body.password === undefined) req.validationErrors.push('password é obrigatório no body da requisição');
-
-        if (req.validationErrors.length > 0) {
-            return res.status(400).json(req.validationErrors);
-        }
+        req.checkBody('login', 'login é obrigatório no body da requisição').notEmpty();
+        req.checkBody('password', 'password é obrigatório no body da requisição').notEmpty();
+        req.getValidationResult().then(function(result) {
+            if (!result.isEmpty()) {
+                return res.status(400).json({errors: result.array()});       
+            }
+        });
         //decodificar MD5, SHA1 ou BASE64
         req.body.kdfResult = scrypt.kdfSync(req.body.password.toString(), scryptParam);
         return next();

@@ -59,7 +59,7 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end(function(err, res) {
-                    expect(res.body.length).to.equal(2);
+                    expect(res.body.errors.length).to.equal(2);
                     done();
                 });
         });
@@ -71,7 +71,7 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end(function(err, res) {
-                    expect(res.body[0]).to.equal('password é obrigatório no body da requisição');
+                    expect(res.body.errors[0].msg).to.equal('password é obrigatório no body da requisição');
                     done();
                 });
         });
@@ -83,7 +83,7 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end(function(err, res) {
-                    expect(res.body[0]).to.equal('login é obrigatório no body da requisição');
+                    expect(res.body.errors[0].msg).to.equal('login é obrigatório no body da requisição');
                     done();
                 });
         });
@@ -122,8 +122,6 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(200)
                 .end(function(err, res) {
-                    console.log(err);
-                    console.log(res.body);
                     expect(res.body).to.have.property('token');
                     expect(res.body.token).to.not.equal(null);
                     done();
