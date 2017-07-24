@@ -1,15 +1,15 @@
 (function() {
-    var postgres = require('../../lib/postgres');
-    var jwt = require('jsonwebtoken');
-    var scrypt = require('scrypt');
-    var scryptParam = scrypt.paramsSync(0.01);
+    const postgres = require('../../lib/postgres');
+    const jwt = require('jsonwebtoken');
+    const scrypt = require('scrypt');
+    const scryptParam = scrypt.paramsSync(0.01);
 
     exports.logEmployee = function(req, res) {
         //remove dados sensíveis da resposta
         delete req.employee.password;
         delete req.body.password;
         delete req.body.kdfResult;
-        var tk = {};
+        const tk = {};
         tk.token = 'Bearer '+jwt.sign(req.employee, 'meutokensecreto', { expiresIn: 1800 });//expires in 1800 seconds
         res.status(200).json(tk);
         res.end();
@@ -29,7 +29,7 @@
     };
 
     exports.lookupLogin = function(req, res, next) {
-        var sql = 'SELECT e.employee_id, e.login, e.password FROM employee e WHERE e.login=$1';
+        const sql = 'SELECT e.employee_id, e.login, e.password FROM employee e WHERE e.login=$1';
         postgres.client.query(sql, [req.body.login], function(err, result) {
             if (err) {
                 return res.status(500).json({ errors: ['Não foi possível efetuar login'] });
