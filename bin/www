@@ -1,13 +1,11 @@
 #!/usr/bin/env node
-
 var app = require('../app');
 var pg = require('../lib/postgres');
-var server = require('http').Server(app);
 
 pg.initialize(app.config.DATABASEURL, function(err){
   if(err){
     throw err;
   }
-  server.listen(app.config.PORT);
-  console.log('Microsservice login listening at http://%s:%s', app.config.host, app.config.PORT);
+  app.listen(app.config.PORT);
+  console.log('Microsservice login listening at http://localhost:%s', app.config.PORT);
 });
