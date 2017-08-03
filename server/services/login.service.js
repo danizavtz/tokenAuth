@@ -4,7 +4,7 @@
     const scrypt = require('scrypt');
     const scryptParam = scrypt.paramsSync(0.01);
 
-    exports.logEmployee = function(req, res) {
+    exports.logEmployee = (req, res) => {
         //remove dados sensíveis da resposta
         delete req.employee.password;
         delete req.body.password;
@@ -15,22 +15,22 @@
         res.end();
     };
 
-    exports.validateLogin = function(req, res, next) {
+    exports.validateLogin = (req, res, next) => {
         req.checkBody('login', 'login é obrigatório no body da requisição').notEmpty();
         req.checkBody('password', 'password é obrigatório no body da requisição').notEmpty();
-        req.getValidationResult().then(function(result) {
+        req.getValidationResult().then((result) => {
             if (!result.isEmpty()) {
                 return res.status(400).json({errors: result.array()});       
             }
-        });
         //decodificar MD5, SHA1 ou BASE64
         req.body.kdfResult = scrypt.kdfSync(req.body.password.toString(), scryptParam);
         return next();
+        });
     };
 
-    exports.lookupLogin = function(req, res, next) {
+    exports.lookupLogin = (req, res, next) => {
         const sql = 'SELECT e.employee_id, e.login, e.password FROM employee e WHERE e.login=$1';
-        postgres.client.query(sql, [req.body.login], function(err, result) {
+        postgres.client.query(sql, [req.body.login], (err, result) => {
             if (err) {
                 return res.status(500).json({ errors: ['Não foi possível efetuar login'] });
             }
