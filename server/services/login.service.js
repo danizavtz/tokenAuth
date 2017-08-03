@@ -1,4 +1,5 @@
 (function() {
+    'use strict';
     const postgres = require('../../lib/postgres');
     const jwt = require('jsonwebtoken');
     const scrypt = require('scrypt');
@@ -9,7 +10,7 @@
         delete req.employee.password;
         delete req.body.password;
         delete req.body.kdfResult;
-        const tk = {};
+        let tk = {};
         tk.token = 'Bearer '+jwt.sign(req.employee, 'meutokensecreto', { expiresIn: 1800 });//expires in 1800 seconds
         res.status(200).json(tk);
         res.end();
@@ -29,7 +30,7 @@
     };
 
     exports.lookupLogin = (req, res, next) => {
-        const sql = 'SELECT e.employee_id, e.login, e.password FROM employee e WHERE e.login=$1';
+        let sql = 'SELECT e.employee_id, e.login, e.password FROM employee e WHERE e.login=$1';
         postgres.client.query(sql, [req.body.login], (err, result) => {
             if (err) {
                 return res.status(500).json({ errors: ['Could not do login'] });
