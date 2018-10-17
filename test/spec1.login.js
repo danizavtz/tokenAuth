@@ -71,7 +71,7 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end(function(err, res) {
-                    expect(res.body.errors[0].msg).to.equal('password é obrigatório no body da requisição');
+                    expect(res.body.errors[0].msg).to.equal('password is required');
                     done();
                 });
         });
@@ -83,7 +83,7 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end(function(err, res) {
-                    expect(res.body.errors[0].msg).to.equal('login é obrigatório no body da requisição');
+                    expect(res.body.errors[0].msg).to.equal('login is required');
                     done();
                 });
         });
@@ -96,7 +96,7 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end(function(err, res) {
-                    expect(res.body.errors[0]).to.equal('Usuário ou senha incorretos');
+                    expect(res.body.errors[0]).to.equal('User or password does not match');
                     done();
                 });
         });
@@ -109,7 +109,7 @@ describe('#Login', function() {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end(function(err, res) {
-                    expect(res.body.errors[0]).to.equal('Usuário ou senha incorretos');
+                    expect(res.body.errors[0]).to.equal('User or password does not match');
                     done();
                 });
         });
