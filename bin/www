@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var app = require('../app');
-var pg = require('../lib/postgres');
-
-pg.initialize(app.config.DATABASEURL, function(err){
+var db = require('../lib/mysqldb');
+var pool = db.getPool()
+pool.getConnection(function(err, connection) {
   if(err){
     throw err;
   }
