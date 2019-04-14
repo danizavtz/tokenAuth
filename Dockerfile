@@ -1,6 +1,4 @@
 FROM alpine:latest
-#repositoy added to solve bad-archive error
-RUN echo 'https://dl-3.alpinelinux.org/alpine/v3.8/main' > /etc/apk/repositories
 RUN apk add --update \
 nodejs \
 nodejs-npm \
