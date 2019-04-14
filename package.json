@@ -27,13 +27,13 @@
   },
   "homepage": "https://github.com/danizavtz/tokenAuth#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.18.3",
     "cors": "^2.8.1",
-    "express": "^4.14.0",
-    "express-jwt": "^5.1.0",
+    "express": "^4.16.0",
+    "express-jwt": "^5.3.1",
     "express-validator": "^3.2.1",
-    "jsonwebtoken": "^7.1.9",
-    "morgan": "^1.7.0",
+    "jsonwebtoken": "^8.3.0",
+    "morgan": "^1.9.1",
     "nodemon": "^1.11.0",
     "pg": "^6.1.0",
     "scrypt": "^6.0.3"
