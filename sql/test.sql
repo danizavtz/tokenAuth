@@ -1,4 +1,8 @@
 --removing colateral effects for test running
+CREATE TABLE IF NOT EXISTS employee(
+	employee_id SERIAL PRIMARY KEY ,
+	login VARCHAR(20) NOT NULL,
+	password BYTEA
+);
+INSERT INTO employee(employee_id,login, password) VALUES (10,'admin', '\x736372797074000b00000008000000017712a8c320fd8b8fb89f8f56333393847dc63b5a03780aa5226d2f8aa6fd45bf9327bebe248e12c49c4e153d05fd48affc7c06e277cdcfb3cba5a80404d9a1baf8e0a12b1cf1ab384ae462474aa8a240');
 DELETE FROM employee;
-ALTER SEQUENCE employee_employee_id_seq RESTART WITH 1;
-INSERT INTO employee(employee_id,login, password) VALUES (10,'admin', '\x736372797074000f0000000800000001bb7908e57a632ba08244a5b2e0e082e53944383993b90b7e6271e0151bab04403eb1e51cd67e04e4740d4fdaeeb3113ec1bc37af8c37b045f8fc1c8169a8cab5ce8aac53acca0704ba2881535133fa15');

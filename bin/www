@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-var app = require('../app');
-var pg = require('../lib/postgres');
+const app = require('../app');
+const pg = require('../lib/postgres');
 
 pg.initialize(app.config.DATABASEURL, function(err){
   if(err){
