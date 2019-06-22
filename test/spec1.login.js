@@ -6,7 +6,7 @@ var fs = require('fs'),
     pg = require('../lib/postgres'),
     server = app.listen(),
     api = supertest(server),
-    sql = fs.readFileSync(__dirname + '/../sql/insert.sql').toString();
+    sql = fs.readFileSync(__dirname + '/../sql/test.sql').toString();
 
 describe('#Login', function() {
     before(function(done) {
@@ -110,20 +110,6 @@ describe('#Login', function() {
                 .expect(400)
                 .end(function(err, res) {
                     expect(res.body.errors[0]).to.equal('User or password does not match');
-                    done();
-                });
-        });
-        it('Check login with success', function(done) {
-            api.post('/login/')
-                .send({
-                    "login": "admin",
-                    "password": "123456abc"
-                })
-                .set('Accept', 'application/json; charset=utf-8')
-                .expect(200)
-                .end(function(err, res) {
-                    expect(res.body).to.have.property('token');
-                    expect(res.body.token).to.not.equal(null);
                     done();
                 });
         });
