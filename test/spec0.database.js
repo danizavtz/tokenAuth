@@ -1,5 +1,5 @@
 process.env.NODE_ENV = 'test';
-let expect = require('chai').expect,
+const expect = require('chai').expect,
     pg = require('../lib/postgres');
 
 describe('#DATABASE', () => {

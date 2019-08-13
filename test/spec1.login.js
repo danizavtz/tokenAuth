@@ -1,5 +1,5 @@
 process.env.NODE_ENV = 'test';
-let fs = require('fs'),
+const fs = require('fs'),
     expect = require('chai').expect,
     supertest = require('supertest'),
     app = require('../app'),
