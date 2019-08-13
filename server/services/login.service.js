@@ -1,5 +1,3 @@
-(function() {
-    'use strict';
     const postgres = require('../../lib/postgres');
     const jwt = require('jsonwebtoken');
     const scrypt = require('scrypt');
@@ -47,5 +45,3 @@
             next();
         });
     };
-
-}());

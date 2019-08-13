@@ -24,14 +24,14 @@ if (process.env.NODE_ENV !== 'test') {
 
 app.use('/', require('./server/index'));
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     res.status(401).sendFile(__dirname + '/server/html/401.html');
   }
   next(err);
 });
 //após tentar casar todas as rotas a ultima rota que sobrou é not found
-app.get('*', function(req, res) {
+app.get('*', (req, res) => {
   res.status(404).sendFile(__dirname + '/server/html/404.html');
 });
 
