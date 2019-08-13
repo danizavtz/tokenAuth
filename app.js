@@ -1,13 +1,13 @@
-var express = require('express');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var expressJwt = require('express-jwt');
-var expressValidator = require('express-validator');
+let express = require('express');
+let logger = require('morgan');
+let bodyParser = require('body-parser');
+let cors = require('cors');
+let expressJwt = require('express-jwt');
+let expressValidator = require('express-validator');
 
-var config = require('./config/env.config.json')[process.env.NODE_ENV || 'development'];
+let config = require('./config/env.config.json')[process.env.NODE_ENV || 'development'];
 
-var app = express();
+let app = express();
 app.disable('x-powered-by');
 app.config = config;
 app.use('/secure', expressJwt({ secret: "$token-secret#" }));

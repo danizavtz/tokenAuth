@@ -2,7 +2,7 @@
 const app = require('../app');
 const pg = require('../lib/postgres');
 
-pg.initialize(app.config.DATABASEURL, function(err){
+pg.initialize(app.config.DATABASEURL, (err) => {
   if(err){
     throw err;
   }
