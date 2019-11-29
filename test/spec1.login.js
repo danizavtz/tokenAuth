@@ -10,7 +10,7 @@ const fs = require('fs'),
 
 describe('#Login', () => {
     before((done) => {
-        pg.initialize(app.config.DATABASEURL, (err) => {
+        pg.initialize(process.env.DATABASEURL, (err) => {
             if (err) {
                 throw err;
             }

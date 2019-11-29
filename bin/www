@@ -2,10 +2,10 @@
 const app = require('../app');
 const pg = require('../lib/postgres');
 
-pg.initialize(app.config.DATABASEURL, (err) => {
+pg.initialize(process.env.DATABASEURL, (err) => {
   if(err){
     throw err;
   }
-  app.listen(app.config.PORT);
-  console.log('Microsservice login listening at http://localhost:%s', app.config.PORT);
+  app.listen(process.env.PORT);
+  console.log('Microsservice login listening at http://localhost:%s', process.env.PORT);
 });
