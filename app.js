@@ -8,7 +8,7 @@ const expressValidator = require('express-validator');
 
 const app = express();
 app.disable('x-powered-by');
-app.use('/secure', expressJwt({ secret: "$token-secret#" }));
+app.use('/secure', expressJwt({ secret: process.env.SECRET }));
 cors({ credentials: true, origin: true });
 app.use(cors());
 app.use(bodyParser.json({ type: 'application/json' }));
@@ -21,16 +21,5 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use('/', require('./server/index'));
-
-app.use((err, req, res, next) => {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401).sendFile(__dirname + '/server/html/401.html');
-  }
-  next(err);
-});
-//após tentar casar todas as rotas a ultima rota que sobrou é not found
-app.get('*', (req, res) => {
-  res.status(404).sendFile(__dirname + '/server/html/404.html');
-});
 
 module.exports = app;
