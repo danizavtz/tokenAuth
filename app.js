@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const expressJwt = require('express-jwt');
 const expressValidator = require('express-validator');
@@ -11,8 +10,8 @@ app.disable('x-powered-by');
 app.use('/secure', expressJwt({ secret: process.env.SECRET }));
 cors({ credentials: true, origin: true });
 app.use(cors());
-app.use(bodyParser.json({ type: 'application/json' }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 app.locals.title = "Login App";
