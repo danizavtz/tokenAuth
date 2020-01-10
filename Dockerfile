@@ -14,7 +14,6 @@ COPY package.json /app/package.json
 RUN npm i --silent
 COPY app.js /app/app.js
 COPY bin/ /app/bin
-COPY config/ /app/config
 COPY lib/ /app/lib
 COPY server/ /app/server
 COPY sql/ /app/sql
