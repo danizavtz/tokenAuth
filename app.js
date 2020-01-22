@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-app.locals.title = "Login App";
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));
 }
