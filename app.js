@@ -18,6 +18,6 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));
 }
 
-app.use('/', require('./server/index'));
+app.use(require('./server/index'));
 
 module.exports = app;
