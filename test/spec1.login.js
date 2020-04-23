@@ -10,16 +10,11 @@ const fs = require('fs'),
 
 describe('#Login', () => {
     before((done) => {
-        pg.initialize(process.env.DATABASEURL, (err) => {
+        pg.query(sql, (err) => {
             if (err) {
                 throw err;
             }
-            pg.client.query(sql, (err) => {
-                if (err) {
-                    throw err;
-                }
-                done();
-            });
+            done();
         });
     });
 

@@ -1,3 +1,10 @@
 SECRET=development
 PORT=3002
-DATABASEURL=postgres://postgres:postgres@0.0.0.0/postgres
+SECRET=RC
+SCRYPTPARAM=
+PORT=3002
+PGHOST=0.0.0.0
+PGPORT=5432
+PGDATABASE=
+PGUSER=postgres
+PGPASSWORD=

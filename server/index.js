@@ -1,6 +1,6 @@
     const router = require('express').Router();
 
-    router.use(require('./controllers/login.controller'));
+    router.use(require('./routes/login.route'));
     router.use((err, req, res, next) => {
         if (err.name === 'UnauthorizedError') {
           res.status(401).sendFile(__dirname + '/html/401.html');

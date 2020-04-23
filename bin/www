@@ -1,11 +1,4 @@
 #!/usr/bin/env node
 const app = require('../app');
-const pg = require('../lib/postgres');
-
-pg.initialize(process.env.DATABASEURL, (err) => {
-  if(err){
-    throw err;
-  }
-  app.listen(process.env.PORT);
-  console.log('Microsservice login listening at http://localhost:%s', process.env.PORT);
-});
+app.listen(process.env.PORT);
+console.log('Microsservice login listening at http://localhost:%s', process.env.PORT);
