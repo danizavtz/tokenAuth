@@ -10,7 +10,5 @@ COPY bin/ /bin
 COPY lib/ /lib
 COPY server/ /server
 COPY sql/ /sql
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 EXPOSE 3002
 CMD ["npm","start"]
