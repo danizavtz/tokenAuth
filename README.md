@@ -16,7 +16,7 @@ docker build .
 ```
 # Build Local 
 Case executing locally you must first create a .env file copy template from env-sample
-1.`cp env-sampe .env`
+1. `cp env-sampe .env`
 2. fill in values in .env for your current configuration
 3. uncomment Dockerfile the line (seven) that copy your .env file to container
 4. `docker build .`
