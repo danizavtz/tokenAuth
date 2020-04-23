@@ -2,18 +2,24 @@
 # tokenAuth
 Steps for running:<br>
 1. Clone project from git<br>
-2. Para rodar com docker deve possuir o docker e docker-compose instalados
+2. To run with docker, you need docker and docker-compose installed
 3. build image
 ```
 docker-compose up --build
 ```
-4. O servidor deve estar up and running em: http://localhost:3002
+4. Server must be up and running in: http://localhost:3002
 
-#Build
-Para construir um build estável para rodar em sua instância:
+# Build
+To do a stable build in your instance:
 ```
 docker build .
 ```
+# Build Local 
+Case executing locally you must first create a .env file copy template from env-sample
+1. `cp env-sampe .env`
+2. fill in values in .env for your current configuration
+3. uncomment Dockerfile the line (seven) that copy your .env file to container
+4. `docker build .`
 
 # Tests
 1. npm t (unit tests)<br>
