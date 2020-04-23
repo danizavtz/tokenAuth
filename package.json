@@ -4,7 +4,8 @@
   "description": "A microservice for token based security authentication using express and jwt.io",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "test": "mocha --reporter spec test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/"
@@ -33,12 +34,12 @@
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.4",
     "pg": "^7.17.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
+    "nodemon": "^2.0.3",
     "nyc": "^14.1.1",
     "supertest": "^4.0.2"
   }
