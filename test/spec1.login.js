@@ -54,7 +54,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
-                    expect(res.body.errors.length).to.equal(2);
+                    expect(res.body.errors.length).to.equal(4);
                     done();
                 });
         });

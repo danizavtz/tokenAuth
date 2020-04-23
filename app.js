@@ -3,7 +3,6 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const expressJwt = require('express-jwt');
-const expressValidator = require('express-validator');
 
 const app = express();
 app.disable('x-powered-by');
@@ -12,7 +11,6 @@ cors({ credentials: true, origin: true });
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(expressValidator());
 
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));

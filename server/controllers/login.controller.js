@@ -9,21 +9,14 @@
         res.end();
     };
 
-    exports.validateLogin = (req, res, next) => {
-        req.checkBody('login', 'login is required').notEmpty();
-        req.checkBody('password', 'password is required').notEmpty();
-        req.getValidationResult().then((result) => {
-            if (!result.isEmpty()) {
-                return res.status(400).json({errors: result.array()});       
-            }
+    exports.hashPassword = (req, res, next) => {
         //decodificar MD5, SHA1 ou BASE64
-            crypto.scrypt(req.body.password.toString(), 'salt', 256, (err, derivedKey)=>{
-                if (err) {
-                    return res.status(500).json({ errors: ['Could not do login'] });
-                }
-                req.body.kdfResult = derivedKey;
-                return next();
-            });
+        crypto.scrypt(req.body.password.toString(), 'salt', 256, (err, derivedKey)=>{
+            if (err) {
+                return res.status(500).json({ errors: ['Could not do login'] });
+            }
+            req.body.kdfResult = derivedKey;
+            return next();
         });
     };
 
