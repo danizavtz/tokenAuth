@@ -46,3 +46,5 @@ jobs:
         PGDATABASE: postgres
         PGUSER: postgres
         PGPASSWORD: postgres
+        SECRET: githubactions
+        PORT: 3000
