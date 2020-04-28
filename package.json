@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "createdb": "psql -U postgres -a -f ./sql/create.sql",
-    "populatedb": "psql -U postgres -a -f ./sql/insert.sql",
-    "dropdb": "psql -U postgres -a -f ./sql/drop.sql",
+    "createdb": "psql -U postgres -h postgres -a -f ./sql/create.sql",
+    "populatedb": "psql -U postgres -h postgres -a -f ./sql/insert.sql",
+    "dropdb": "psql -U postgres -h postgres -a -f ./sql/drop.sql",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "test": "mocha --reporter spec test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/"
