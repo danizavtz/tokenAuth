@@ -1,3 +1,4 @@
+![Node.js CI](https://github.com/danizavtz/tokenAuth/workflows/Node.js%20CI/badge.svg)
 [![Express Logo](https://i.cloudup.com/zfY6lL7eFa-3000x3000.png)](http://expressjs.com/)
 # tokenAuth
 Steps for running:<br>
