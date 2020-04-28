@@ -18,8 +18,8 @@ jobs:
         node-version: [10.x, 12.x]
     services:
       postgres:
-         image: postgres
-         env:
+        image: postgres
+        env:
           POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
