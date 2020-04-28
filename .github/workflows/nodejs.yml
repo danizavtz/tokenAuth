@@ -43,7 +43,6 @@ jobs:
     - run: npm run coverage
     - run: npm run dropdb
       env:
-        POSTGRES_HOST: postgres
         POSTGRES_PORT: 5432
         PGDATABASE: postgres
         PGUSER: postgres
