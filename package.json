@@ -6,9 +6,6 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "createdb": "node ./sql/create.js",
-    "populatedb": "node ./sql/insert.js",
-    "dropdb": "node ./sql/drop.js",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "test": "mocha --reporter spec test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/"
