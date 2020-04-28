@@ -33,11 +33,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run lint
-    - run: npm run createdb
-    - run: npm run populatedb
-    - run: npm test
-    - run: npm run coverage
-    - run: npm run dropdb
       env:
         POSTGRES_HOST: postgres
         POSTGRES_PORT: 5432
