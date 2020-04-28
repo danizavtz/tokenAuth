@@ -24,8 +24,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
     steps:
     - name: Check out repository code
       uses: actions/checkout@v2
@@ -41,7 +39,7 @@ jobs:
     - run: npm run coverage
     - run: npm run dropdb
       env:
-        POSTGRES_HOST: localhost
+        POSTGRES_HOST: postgres
         POSTGRES_PORT: 5432
         PGDATABASE: postgres
         PGUSER: postgres
