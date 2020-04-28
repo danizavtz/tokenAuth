@@ -16,5 +16,4 @@ pgclient.query(sql, (err) => {
     if (err) {
         throw err;
     }
-    done();
 });

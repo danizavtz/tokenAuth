@@ -1,6 +1,5 @@
 const { Client } = require('pg');
 const fs = require('fs');
-const postgres = require('../lib/postgres');
 const sql = fs.readFileSync(__dirname + '/drop.sql').toString();
 
 const pgclient = new Client({
@@ -17,5 +16,4 @@ pgclient.query(sql, (err) => {
     if (err) {
         throw err;
     }
-    done();
 });
