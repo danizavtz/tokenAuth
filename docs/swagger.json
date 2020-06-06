@@ -1,0 +1,147 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a microservice for token generation using JWT.",
+    "version": "1.0.0",
+    "title": "Token auth",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:3002",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "index",
+      "description": "Route for health check"
+    },
+    {
+      "name": "login",
+      "description": "Access to token generation"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "index"
+        ],
+        "summary": "Route for health check",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return response with success",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/HealthCheck"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "summary": "Route for jwt token generation",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "loginoperation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Pet object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ErrorMsg"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Login": {
+      "type": "object",
+      "required": [
+        "login",
+        "password"
+      ],
+      "properties": {
+        "login": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Pet"
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Token"
+      }
+    },
+    "HealthCheck": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "ErrorMsg": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "param": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
