@@ -3,9 +3,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
 exports.logEmployee = (req, res) => {
-    const tk = {};
-    tk.token = 'Bearer ' + jwt.sign(req.employee, process.env.SECRET, { expiresIn: 1800 });//expires in 1800 seconds
-    res.status(200).json(tk);
+    res.status(200).json({ token: 'Bearer ' + jwt.sign(req.employee, process.env.SECRET, { expiresIn: 1800 })});//expires in 1800 seconds
     res.end();
 };
 
@@ -29,7 +27,6 @@ exports.lookupLogin = (req, res, next) => {
         if (result.rows.length === 0) {
             return res.status(404).json({ errors: [{location: req.path, msg: 'User or password does not match', param: req.params.id}] });
         }
-
         req.employee = result.rows[0];
         next();
     });
