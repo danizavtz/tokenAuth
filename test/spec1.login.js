@@ -114,5 +114,20 @@ describe('#Login', () => {
                     done();
                 });
         });
+        it('Check password with sucess', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "admin",
+                    "password": "abc123"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(200)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('token');
+                    expect(res.body.token).not.equal(null);
+                    done();
+                });
+        })
     });
 });

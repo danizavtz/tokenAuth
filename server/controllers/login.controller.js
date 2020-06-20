@@ -13,7 +13,7 @@ exports.hashPassword = (req, res, next) => {
         if (err) {
             return res.status(500).json({ errors: [{location: req.path, msg: 'Could not do login', param: req.params.id}]});
         }
-        req.body.kdfResult = derivedKey;
+        req.body.kdfResult = derivedKey.toString('hex');
         return next();
     });
 };
