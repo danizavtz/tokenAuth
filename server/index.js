@@ -8,12 +8,10 @@
     router.use('/api-docs', swaggerUi.serve);
     router.get('/api-docs', swaggerUi.setup(swaggerDocument, options));
     router.use(require('./routes/login.route'));
-    router.use((err, req, res, next) => {
-        if (err.name === 'UnauthorizedError') {
-          res.status(401).json({ errors: [{location: req.path, msg: 'Could not do login', param: req.params.id}]});
-        }
-        next(err);
-      });
+    router.get('/secure', (req, res) => {
+        req.sucesso = { msg: 'server up and running secure route'};
+        res.status(200).json(req.sucesso);
+    });
 
     router.get('/', (req, res) => {
         res.status(200).json({msg: "server up and running"});

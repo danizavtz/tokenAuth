@@ -114,5 +114,55 @@ describe('#Login', () => {
                     done();
                 });
         });
+        it('Check password with sucess', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "admin",
+                    "password": "abc123"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(200)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('token');
+                    expect(res.body.token).not.equal(null);
+                    done();
+                });
+        })
+        it('Check access secure route without token returns error', (done) => {
+            api.get('/secure')
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(401)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.status).equal(401);
+                    done()
+                });
+        });
+        it('Check access secure route with sucess', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "admin",
+                    "password": "abc123"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(200)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('token');
+                    const token = res.body.token;
+                    api.get('/secure')
+                        .set('Accept', 'application/json; charset=utf-8')
+                        .set('Authorization', token)
+                        .expect(200)
+                        .end((err, res) => {
+                            if (err) throw err;
+                            expect(res.status).equal(200);
+                            expect(res.body).to.have.property('msg');
+                            expect(res.body.msg).equal('server up and running secure route')
+                            done()
+                        });
+                });
+        });
     });
 });
