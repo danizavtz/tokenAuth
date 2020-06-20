@@ -91,7 +91,10 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end((err, res) => {
-                    expect(res.body.errors[0]).to.equal('User or password does not match');
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('User or password does not match');
                     done();
                 });
         });
@@ -104,7 +107,10 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
-                    expect(res.body.errors[0]).to.equal('User or password does not match');
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('User or password does not match');
                     done();
                 });
         });
