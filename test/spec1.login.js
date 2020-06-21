@@ -6,15 +6,27 @@ const fs = require('fs'),
     pg = require('../lib/postgres'),
     server = app.listen(),
     api = supertest(server),
-    sql = fs.readFileSync(__dirname + '/../sql/test.sql').toString();
+    drop = fs.readFileSync(__dirname + '/../sql/drop.sql').toString(),
+    create = fs.readFileSync(__dirname + '/../sql/create.sql').toString(),
+    insert = fs.readFileSync(__dirname + '/../sql/insert.sql').toString();
 
 describe('#Login', () => {
     before((done) => {
-        pg.query(sql, (err) => {
+        pg.query(drop, (err) => {
             if (err) {
                 throw err;
             }
-            done();
+            pg.query(create, (err) => {
+                if (err) {
+                    throw err;
+                }
+                pg.query(insert, (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                    done();
+                });
+            });
         });
     });
 
@@ -24,6 +36,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.status).to.equal(404);
                     done();
                 });
@@ -33,6 +46,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.status).to.equal(404);
                     done();
                 });
@@ -42,6 +56,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.status).to.equal(200);
                     done();
                 });
@@ -54,6 +69,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body.errors.length).to.equal(4);
                     done();
                 });
@@ -66,6 +82,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body.errors[0].msg).to.equal('password is required');
                     done();
                 });
@@ -78,7 +95,110 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body.errors[0].msg).to.equal('login is required');
+                    done();
+                });
+        });
+        it('Check login is required with empty string', (done) => {
+            api.post('/login/')
+                .send({
+                    "logi": "login",
+                    "password": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(400)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('login is required');
+                    done();
+                });
+        });
+        it('Check login is required with empty string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "",
+                    "password": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(400)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('login is required');
+                    done();
+                });
+        });
+        it('Check login is required with null string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": null,
+                    "password": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(400)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('login is required');
+                    done();
+                });
+        });
+        it('Check password is required with password key does not exist', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "abc123abc",
+                    "passwor": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(400)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('password is required');
+                    done();
+                });
+        });
+        it('Check password is required with empty string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "abc123abc",
+                    "password": ""
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(400)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('password is required');
+                    done();
+                });
+        });
+        it('Check password is required with null string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "abc123abc",
+                    "password": null
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(400)
+                .end((err, res) => {
+                    if (err) throw err;
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('password is required');
                     done();
                 });
         });
@@ -91,6 +211,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -105,8 +226,9 @@ describe('#Login', () => {
                     "password": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(400)
+                .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
