@@ -24,6 +24,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.status).to.equal(404);
                     done();
                 });
@@ -33,6 +34,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.status).to.equal(404);
                     done();
                 });
@@ -42,6 +44,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.status).to.equal(200);
                     done();
                 });
@@ -54,6 +57,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body.errors.length).to.equal(4);
                     done();
                 });
@@ -66,6 +70,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body.errors[0].msg).to.equal('password is required');
                     done();
                 });
@@ -78,6 +83,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body.errors[0].msg).to.equal('login is required');
                     done();
                 });
@@ -89,8 +95,9 @@ describe('#Login', () => {
                     "password": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -105,8 +112,9 @@ describe('#Login', () => {
                     "password": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -121,8 +129,9 @@ describe('#Login', () => {
                     "password": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -137,8 +146,9 @@ describe('#Login', () => {
                     "passwor": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -153,8 +163,9 @@ describe('#Login', () => {
                     "password": ""
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -169,8 +180,9 @@ describe('#Login', () => {
                     "password": null
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -187,6 +199,7 @@ describe('#Login', () => {
                 .set('Accept', 'application/json; charset=utf-8')
                 .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
@@ -201,8 +214,9 @@ describe('#Login', () => {
                     "password": "1231313131313"
                 })
                 .set('Accept', 'application/json; charset=utf-8')
-                .expect(400)
+                .expect(404)
                 .end((err, res) => {
+                    if (err) throw err;
                     expect(res.body).to.have.property('errors');
                     expect(res.body.errors).to.be.an('array');
                     expect(res.body.errors[0]).to.have.property('msg');
