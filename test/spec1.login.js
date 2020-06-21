@@ -6,15 +6,27 @@ const fs = require('fs'),
     pg = require('../lib/postgres'),
     server = app.listen(),
     api = supertest(server),
-    sql = fs.readFileSync(__dirname + '/../sql/test.sql').toString();
+    drop = fs.readFileSync(__dirname + '/../sql/drop.sql').toString(),
+    create = fs.readFileSync(__dirname + '/../sql/create.sql').toString(),
+    insert = fs.readFileSync(__dirname + '/../sql/insert.sql').toString();
 
 describe('#Login', () => {
     before((done) => {
-        pg.query(sql, (err) => {
+        pg.query(drop, (err) => {
             if (err) {
                 throw err;
             }
-            done();
+            pg.query(create, (err) => {
+                if (err) {
+                    throw err;
+                }
+                pg.query(insert, (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                    done();
+                });
+            });
         });
     });
 
