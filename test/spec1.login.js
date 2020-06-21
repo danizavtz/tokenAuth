@@ -82,6 +82,102 @@ describe('#Login', () => {
                     done();
                 });
         });
+        it('Check login is required with empty string', (done) => {
+            api.post('/login/')
+                .send({
+                    "logi": "login",
+                    "password": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('login is required');
+                    done();
+                });
+        });
+        it('Check login is required with empty string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "",
+                    "password": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('login is required');
+                    done();
+                });
+        });
+        it('Check login is required with null string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": null,
+                    "password": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('login is required');
+                    done();
+                });
+        });
+        it('Check password is required with password key does not exist', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "abc123abc",
+                    "passwor": "1231313131313"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('password is required');
+                    done();
+                });
+        });
+        it('Check password is required with empty string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "abc123abc",
+                    "password": ""
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('password is required');
+                    done();
+                });
+        });
+        it('Check password is required with null string', (done) => {
+            api.post('/login/')
+                .send({
+                    "login": "abc123abc",
+                    "password": null
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg');
+                    expect(res.body.errors[0].msg).to.equal('password is required');
+                    done();
+                });
+        });
         it('Check not found user', (done) => {
             api.post('/login/')
                 .send({
