@@ -1,4 +1,9 @@
 #!/usr/bin/env node
 const app = require('../app');
-app.listen(process.env.PORT);
-console.log('Microsservice login listening at http://localhost:%s', process.env.PORT);
+
+try {
+    app.listen(process.env.PORT);
+    console.log('Microsservice login listening at http://localhost:%s', process.env.PORT);
+} catch (e) {
+    throw e
+}
