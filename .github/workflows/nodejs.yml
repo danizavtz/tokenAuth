@@ -33,6 +33,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run lint
+    - run: npm test
       env:
         POSTGRES_HOST: postgres
         POSTGRES_PORT: 5432
