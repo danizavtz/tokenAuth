@@ -53,9 +53,9 @@ jobs:
         PGHOST: postgres
         SECRET: githubactions
         PORT: 3000
+    - run: npm run coverage:report
     - name: Run coverage
       uses: tintef/nyc-reporter-action@0.1.0
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        COVERAGE_FOLDER: ".nyc_output"
         REPORTER: 'text' # defaults to 'text-summary'

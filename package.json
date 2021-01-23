@@ -8,7 +8,8 @@
     "start": "node ./bin/www",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "test": "mocha --reporter spec test/ --exit",
-    "coverage": "nyc mocha --exit --reporter progress ./test/"
+    "coverage": "nyc mocha --exit --reporter progress ./test/",
+    "coverage:report": "nyc report --reporter=lcov --reporter=text"
   },
   "repository": {
     "type": "git",
