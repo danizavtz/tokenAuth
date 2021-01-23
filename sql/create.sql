@@ -1,4 +1,4 @@
-CREATE TABLE employee(
+CREATE TABLE IF NOT EXISTS employee(
 	employee_id SERIAL PRIMARY KEY ,
 	login VARCHAR(20) NOT NULL,
 	password VARCHAR(512)
