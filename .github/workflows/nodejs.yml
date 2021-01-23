@@ -31,6 +31,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: npm install -g codecov
     - run: npm ci
     - run: npm run lint
     - run: npm test
@@ -43,7 +44,7 @@ jobs:
         PGHOST: postgres
         SECRET: githubactions
         PORT: 3000
-    - run: npm run coverage
+    - run: npm run coverage && codecov
       env:
         POSTGRES_HOST: postgres
         POSTGRES_PORT: 5432
@@ -53,7 +54,10 @@ jobs:
         PGHOST: postgres
         SECRET: githubactions
         PORT: 3000
-    - run: npm run coverage:report
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - run: npm run coverage:report && codecov
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Run coverage
       uses: tintef/nyc-reporter-action@0.1.0
       with:
