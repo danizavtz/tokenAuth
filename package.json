@@ -10,7 +10,7 @@
     "test": "mocha --reporter spec test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/",
     "coverage:report": "nyc report --reporter=lcov --reporter=text",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },
   "repository": {
     "type": "git",
@@ -39,7 +39,6 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "codecov": "^3.8.1",
     "eslint": "^7.17.0",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.7",
