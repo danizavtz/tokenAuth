@@ -57,4 +57,5 @@ jobs:
       uses: tintef/nyc-reporter-action@0.1.0
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COVERAGE_FOLDER: ".nyc_output"
         REPORTER: 'text' # defaults to 'text-summary'
