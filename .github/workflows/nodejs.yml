@@ -45,7 +45,7 @@ jobs:
         SECRET: githubactions
         PORT: 3000
     - name: Run coverage
-      uses: tintef/nyc-reporter-action
+      uses: tintef/nyc-reporter-action@0.1.0
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPORTER: 'text' # defaults to 'text-summary'
