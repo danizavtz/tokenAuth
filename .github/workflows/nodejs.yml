@@ -43,7 +43,7 @@ jobs:
         PGHOST: postgres
         SECRET: githubactions
         PORT: 3000
-    - run: npm run coverage && codecov
+    - run: npm i -g codecov && npm run coverage && codecov -t ${{ secrets.CODECOV_TOKEN }}
       env:
         POSTGRES_HOST: postgres
         POSTGRES_PORT: 5432
@@ -53,9 +53,6 @@ jobs:
         PGHOST: postgres
         SECRET: githubactions
         PORT: 3000
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    - run: npm run coverage:report && codecov
-      env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Run coverage
       uses: tintef/nyc-reporter-action@0.1.0
