@@ -55,10 +55,3 @@ jobs:
         PORT: 3000
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - run: npm i -g codecov && npm run coverage:report && codecov -t ${{ secrets.CODECOV_TOKEN }}
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    - name: Run coverage
-      uses: tintef/nyc-reporter-action@0.1.0
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        REPORTER: 'text' # defaults to 'text-summary'
