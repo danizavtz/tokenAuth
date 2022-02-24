@@ -27,5 +27,5 @@ Case executing locally you must first create a .env file copy template from env-
 4. `docker build .`
 
 # Tests
-1. npm t (unit tests)<br>
-2. npm run coverage (coverage)<br>
+1. `npm t (unit tests)`
+2. `npm run coverage (coverage)`
