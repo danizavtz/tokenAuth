@@ -7,7 +7,7 @@
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
-    "test": "mocha --reporter spec test/ --exit",
+    "test": "mocha --reporter progress test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/",
     "coverage:report": "nyc report --reporter=lcov --reporter=text",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
@@ -40,7 +40,7 @@
   "devDependencies": {
     "chai": "^4.3.6",
     "eslint": "^8.14.0",
-    "mocha": "^10.0.0",
+    "mocha": "^9.2.2",
     "nodemon": "^2.0.16",
     "nyc": "^15.1.0",
     "sinon": "^13.0.2",
