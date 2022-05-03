@@ -4,6 +4,8 @@ const fs = require('fs'),
     supertest = require('supertest'),
     app = require('../app'),
     pg = require('../lib/postgres'),
+    sinon = require('sinon'),
+    crypto = require('crypto');
     server = app.listen(),
     api = supertest(server),
     drop = fs.readFileSync(__dirname + '/../sql/drop.sql').toString(),
@@ -71,6 +73,58 @@ describe('#Login', () => {
                 .end((err, res) => {
                     if (err) throw err;
                     expect(res.body.errors.length).to.equal(4);
+                    done();
+                });
+        });
+        it('Mock hash password error', (done) => {
+            const mocked_error_from_hash_password = {
+                severity: 'ERROR',
+                code: '42P01',
+                detail: 'The value of "keylen" is out of range. It must be >= 0 && <= 2147483647.',
+            };
+            const stub = sinon.stub(crypto, "scrypt").yields(new Error(mocked_error_from_hash_password));
+            api.post('/login/')
+                .send({
+                    "login": "admin",
+                    "password": "abc123"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(500)
+                .end((err, res) => {
+                    if (err) throw err;
+                    stub.restore();
+                    expect(res.body).to.have.property('errors');
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0].msg).equal('Could not do login');
+                    done();
+                });
+        });
+        it('Check error on query database', (done) => {
+            const mocked_error_from_database = {
+                length: 107,
+                severity: 'ERROR',
+                code: '42P01',
+                detail: 'mocked database error',
+                position: '61',
+                file: 'parse_relation.c',
+                line: '1373',
+                routine: 'parserOpenTable'
+            };
+
+            const stub = sinon.stub(pg, 'query').yields(new Error(mocked_error_from_database));
+            api.post('/login/')
+                .send({
+                    "login": "admin",
+                    "password": "abc123"
+                })
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(500)
+                .end((err, res) => {
+                    if (err) throw err;
+                    stub.restore();
+                    expect(res.body).to.have.property('errors')
+                    expect(res.body.errors).to.be.an('array')
+                    expect(res.body.errors[0].msg).equal('Could not do login')
                     done();
                 });
         });
