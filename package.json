@@ -7,7 +7,7 @@
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
-    "test": "mocha --reporter spec test/ --exit",
+    "test": "mocha --reporter progress test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/",
     "coverage:report": "nyc report --reporter=lcov --reporter=text",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
@@ -30,8 +30,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "express-jwt": "^6.1.1",
+    "express": "^4.18.1",
+    "express-jwt": "^7.6.2",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
@@ -39,10 +39,11 @@
   },
   "devDependencies": {
     "chai": "^4.3.6",
-    "eslint": "^8.10.0",
-    "mocha": "^9.2.1",
-    "nodemon": "^2.0.15",
+    "eslint": "^8.14.0",
+    "mocha": "^9.2.2",
+    "nodemon": "^2.0.16",
     "nyc": "^15.1.0",
-    "supertest": "^6.2.2"
+    "sinon": "^13.0.2",
+    "supertest": "^6.2.3"
   }
 }
