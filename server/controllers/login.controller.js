@@ -22,7 +22,7 @@ exports.lookupLogin = async (req, res, next) => {
         req.employee = result[0];
         next();
     } catch (err) {
-        res.status(500).json({ errors: [{ location: req.path, msg: 'Could not query database table', param: null }] });
+        res.status(500).json({ errors: [{ location: req.path, msg: 'Could not do login', param: null }] });
     }
 };
 
