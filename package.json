@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "lint": "./node_modules/.bin/eslint ./server/**/*.js",
+    "lint": "./node_modules/.bin/eslint ./server/**/*.js ./bin/www ./lib/*.js app.js",
     "test": "mocha --reporter progress test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/",
     "coverage:report": "nyc report --reporter=lcov --reporter=text",

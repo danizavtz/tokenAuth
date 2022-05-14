@@ -5,7 +5,7 @@ exports.secure_route =  (req, res) => {
 };
 
 exports.index = (req, res) => {
-    res.status(200).json({msg: "server up and running"});
+    res.status(200).json({msg: 'server up and running'});
 };
 
 exports.fallback = (req, res) => {
