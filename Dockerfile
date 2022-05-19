@@ -1,7 +1,7 @@
 FROM alpine:latest
 RUN apk add --update \
 nodejs \
-nodejs-npm && rm -rf /var/cache/apk/*
+npm && rm -rf /var/cache/apk/*
 COPY package.json /package.json
 RUN npm i --silent --prod
 #COPY .env /.env
