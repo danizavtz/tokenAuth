@@ -111,7 +111,7 @@ describe('#Login', () => {
                 routine: 'parserOpenTable'
             };
 
-            const stub = sinon.stub(pg, 'query').yields(new Error(mocked_error_from_database));
+            const stub = sinon.stub(pg, 'query').rejects(mocked_error_from_database);
             api.post('/login/')
                 .send({
                     "login": "admin",

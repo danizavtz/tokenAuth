@@ -1,6 +1,6 @@
 module.exports = {
     "env": {
-        "es6": true,
+        "es2018": true,
         "node": true
     },
     "extends": "eslint:recommended",
@@ -23,6 +23,7 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-useless-catch": "off"
     }
 };
