@@ -32,18 +32,18 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-jwt": "^8.4.1",
-    "express-validator": "^6.14.3",
+    "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
-    "pg": "^8.9.0"
+    "pg": "^8.10.0"
   },
   "devDependencies": {
     "chai": "^4.3.7",
-    "eslint": "^8.34.0",
+    "eslint": "^8.37.0",
     "mocha": "^10.2.0",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.22",
     "nyc": "^15.1.0",
-    "sinon": "^15.0.1",
+    "sinon": "^15.0.3",
     "supertest": "^6.3.3"
   }
 }
