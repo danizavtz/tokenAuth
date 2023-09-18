@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "lint": "./node_modules/.bin/eslint ./server/**/*.js ./bin/www ./lib/*.js app.js",
     "test": "mocha --reporter progress test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/",
     "coverage:report": "nyc report --reporter=lcov --reporter=text",
@@ -38,11 +37,10 @@
   },
   "devDependencies": {
     "chai": "^4.3.8",
-    "eslint": "^8.49.0",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
     "nyc": "^15.1.0",
-    "sinon": "^15.2.0",
+    "sinon": "^16.0.0",
     "supertest": "^6.3.3"
   }
 }
