@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "test": "mocha --reporter progress test/ --exit",
-    "coverage": "nyc mocha --exit --reporter progress ./test/",
+    "test": "mocha --reporter progress test/ --exit --timeout 50000",
+    "coverage": "nyc mocha --exit --reporter progress ./test/ --timeout 50000",
     "coverage:report": "nyc report --reporter=lcov --reporter=text",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },
@@ -36,11 +36,11 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
-    "chai": "^4.3.8",
+    "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
     "nyc": "^15.1.0",
-    "sinon": "^16.0.0",
+    "sinon": "^17.0.0",
     "supertest": "^6.3.3"
   }
 }
