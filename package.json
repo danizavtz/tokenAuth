@@ -4,7 +4,7 @@
   "description": "A microservice for token based security authentication using express and jwt.io",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon ./bin/www",
+    "dev": "node --watch ./bin/www",
     "start": "node ./bin/www",
     "test": "mocha --reporter progress test/ --exit --timeout 50000",
     "coverage": "nyc mocha --exit --reporter progress ./test/ --timeout 50000",
@@ -38,9 +38,8 @@
   "devDependencies": {
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
-    "nodemon": "^3.0.1",
     "nyc": "^15.1.0",
-    "sinon": "^17.0.0",
+    "sinon": "^17.0.1",
     "supertest": "^6.3.3"
   }
 }
