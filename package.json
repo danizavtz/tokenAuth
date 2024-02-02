@@ -4,12 +4,12 @@
   "description": "A microservice for token based security authentication using express and jwt.io",
   "main": "app.js",
   "scripts": {
-    "dev": "node --env-file=.env --watch ./bin/www",
-    "start": "node --env-file=.env ./bin/www",
-    "test": "mocha --reporter progress test/ --exit --timeout 50000",
-    "coverage": "nyc mocha --exit --reporter progress ./test/ --timeout 50000",
-    "coverage:report": "nyc report --reporter=lcov --reporter=text",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    "dev": "node --experimental-modules --env-file=.env --watch ./bin/www",
+    "start": "node --experimental-modules --env-file=.env ./bin/www",
+    "test": "mocha --experimental-modules --reporter progress test/ --exit --timeout 50000",
+    "coverage": "nyc --experimental-modules  mocha --exit --reporter progress ./test/ --timeout 50000",
+    "coverage:report": "nyc --experimental-modules report --reporter=lcov --reporter=text",
+    "report-coverage": "nyc --experimental-modules report --reporter=text-lcov > coverage.lcov"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
-    "chai": "^5.0.3",
+    "chai": "^4.4.1",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "sinon": "^17.0.1",
