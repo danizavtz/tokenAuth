@@ -4,8 +4,8 @@
   "description": "A microservice for token based security authentication using express and jwt.io",
   "main": "app.js",
   "scripts": {
-    "dev": "node --watch ./bin/www",
-    "start": "node ./bin/www",
+    "dev": "node --env-file=.env --watch ./bin/www",
+    "start": "node --env-file=.env ./bin/www",
     "test": "mocha --reporter progress test/ --exit --timeout 50000",
     "coverage": "nyc mocha --exit --reporter progress ./test/ --timeout 50000",
     "coverage:report": "nyc report --reporter=lcov --reporter=text",
@@ -28,7 +28,6 @@
   "homepage": "https://github.com/danizavtz/tokenAuth#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "express-jwt": "^8.4.1",
     "express-validator": "^7.0.1",
